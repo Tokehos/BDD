@@ -54,26 +54,7 @@ public class MoneyTransferTest {
         assertEquals(balanceAfterTransferSecondCard, balanceOfSecondCardAfter);
     }
 
-    @Test
-    void shouldTransferMoreThanRestOfBalance77777() { // производится перевод средств, которых нет на счету
-        int amount = 77777;
-        val loginPage = open("http://localhost:9999", LoginPage.class);
-        val authInfo = DataGeneration.getAuthInfo();
-        val verificationPage = loginPage.validLogin(authInfo);
-        val verificationCode = DataGeneration.getVerificationCode(authInfo);
-        val dashboardPage = verificationPage.verify(verificationCode);
-        int balanceOfFirstCardBefore = DashboardPage.getCurrentBalanceOfFirstCard();
-        int balanceOfSecondCardBefore = DashboardPage.getCurrentBalanceOfSecondCard();
-        val transferPage = dashboardPage.firstCard();
-        val cardInfo = DataGeneration.getSecondCardInfo();
-        transferPage.transferCard(cardInfo, amount);
-        int balanceAfterTransferFirstCard = DataGeneration.balanceOfSecondCardAfterTransfer(balanceOfFirstCardBefore, amount);
-        int balanceAfterTransferSecondCard = DataGeneration.balanceOfFirstCardAfterTransfer(balanceOfSecondCardBefore, amount);
-        int balanceOfFirstCardAfter = DashboardPage.getCurrentBalanceOfFirstCard();
-        int balanceOfSecondCardAfter = DashboardPage.getCurrentBalanceOfSecondCard();
-        assertEquals(balanceAfterTransferFirstCard, balanceOfFirstCardAfter);
-        assertEquals(balanceAfterTransferSecondCard, balanceOfSecondCardAfter);
-    }
+
 
     @Test
     public void shouldTransferFromFirstToSecond0() {
